@@ -1,0 +1,54 @@
+.dashboard {
+    width: 80%;
+    padding:3rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin:0 auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    padding:1rem;
+    gap:1rem;
+}
+.postedMsg{
+    font-size: 1rem;
+    color: green;
+    display: none;
+}
+
+.posts{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+.jobCard{
+    background-color: #ffffffbb;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.jobCard:hover {
+    transform: translateY(-4px); /* Move the card up */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow for a raised effect */
+}
+
+.lastDate{
+    display: flex;
+    gap:3rem;
+}
+
+@media (max-width:768px) {
+    .dashboard{
+        width: 100%;
+        padding: 1rem;
+    }
+}

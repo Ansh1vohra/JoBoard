@@ -1,0 +1,10 @@
+.Head{
+    background-color: #16425B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem;
+    font-family: "Montserrat", sans-serif;
+    font-style: normal;
+    font-optical-sizing: auto;
+}
