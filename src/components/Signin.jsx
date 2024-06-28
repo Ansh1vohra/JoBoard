@@ -42,7 +42,7 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
                 setUserName(user.displayName);
                 localStorage.setItem('UserName',user.displayName);
                 // Send user details to the Database
-                await fetch('http://localhost:5000/api/users/signin', {
+                await fetch('https://joboard-c8ya.onrender.com/api/users/signin', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
         setOTPgen(otpGenerated);
         setUserName(userName);
         localStorage.setItem('UserName',userName);
-        await fetch('http://localhost:5000/api/users/signin', {
+        await fetch('https://joboard-c8ya.onrender.com/api/users/signin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
                 OTP:otpGenerated
             })
         });
-        await fetch('http://localhost:5000/api/users/sendOTP',{
+        await fetch('https://joboard-c8ya.onrender.com/api/users/sendOTP',{
             method:'POST',
             headers: {
                 'Content-Type':'application/json'
