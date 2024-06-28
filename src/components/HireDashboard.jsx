@@ -42,7 +42,7 @@ function Dashboard() {
                         <button type="submit" className='btn btn-outline-dark'>Post</button>
                     </form>
                     {isPosted && 
-                        <p className='postedMsg' style={{ display: 'block' }}>Posted Sucessfully</p>
+                        <p className='alert alert-success' style={{ display: 'block' }}>Posted Sucessfully</p>
                     }
                     
                 </div>

@@ -1,0 +1,7 @@
+.internDetailsContainer{
+    display:flex;
+    flex-direction: column;
+    text-align:center;
+    padding: 1.5rem;
+    gap:1rem;
+}

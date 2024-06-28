@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    min-height: 92vh;
+    min-height: 85vh;
     padding: 2rem;
     text-align: center;
     animation: fadeIn 0.65s ease-in-out;
@@ -56,6 +56,50 @@
 .image img {
     width: 60%;
     animation: zoomIn 0.65s ease-in-out;
+}
+
+section {
+    padding: 2rem;
+}
+
+.testimonials, .howItWorks {
+    margin-bottom: 2.5rem;
+    padding: 2rem;
+}
+.testimonials{
+    background-color:#16425B;
+    color:#f5f5f5;
+    animation: fadeIn 0.65s ease-in-out;
+}
+.testimonial {
+    background-color: #ffffffc2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.testimonial p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.testimonial span {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.howItWorks ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.howItWorks li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
 }
 
 @media (max-width: 768px) {

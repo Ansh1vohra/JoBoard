@@ -1,8 +1,8 @@
 .internshipsContainer{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     padding:2rem;
     gap:2rem;
     animation: fadeIn 0.45s ease-in-out;
@@ -12,20 +12,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1rem;
     padding: 1.5rem;
     border-radius: 10px;
-    background-color: #2F6690;
+    background-color: #16425b7c;
     color: #f5f5f5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .searchBars{
     display: flex;
+    flex-direction: column;
     gap:1rem;
 }
 
+.cardGroup{
+    height: 80vh;
+    overflow-y:auto ;
+}
+
+.cardLink{
+    text-decoration: none;
+}
 /* Card Styles */
 .card {
     min-width: 45vw;
@@ -39,7 +48,8 @@
 
 .card:hover {
     transform: translateY(-4px); /* Move the card up */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow for a raised effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #91d7ff7c;
 }
 
 .card-body {
@@ -79,8 +89,17 @@
 }
 
 @media (max-width:768px) {
+    .internshipsContainer{
+        flex-direction: column;
+    }
     .filterSection{
         flex-direction: column;
+    }
+    .searchBars{
+        flex-direction: row;
+    }
+    .cardGroup{
+        height: fit-content;
     }
 }
 

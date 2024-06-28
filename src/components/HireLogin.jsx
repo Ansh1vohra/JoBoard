@@ -11,7 +11,7 @@ export default function Signin(){
     }
     return(
         <div className="hireContainer">
-            <form onSubmit={redirectDash}>
+            <form className="formSignIn" onSubmit={redirectDash}>
                 <p>Log-In To Recruit!</p>
                 <div class="form-floating m-2">
                     <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required />
@@ -24,7 +24,7 @@ export default function Signin(){
                 <button 
                     type="submit" 
                     className="btn btn-outline-dark m-3"
-                    >Continue
+                    >Log-In
                 </button>
                 <Link to="/hire" style={{textAlign:'center',textDecoration:'none'}}>Haven't Registered Yet? Click Here to Register.</Link>
             </form>

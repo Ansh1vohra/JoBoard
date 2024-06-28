@@ -7,7 +7,7 @@
     animation: fadeIn 0.65s ease-in-out;
 }
 
-.hireContainer form{
+.hireContainer .formSignIn{
     width:40%;
     margin: 2rem;
     padding: 3rem;
@@ -18,11 +18,11 @@
     justify-content: center;
 }
 
-.hireContainer form button{
+.hireContainer .formSignIn button{
     height: calc(3.5rem + calc(var(--bs-border-width) * 2));
 }
 
-.hireContainer form p{
+.hireContainer .formSignIn p{
     text-align: center;
     font-size: 22px;
     font-weight:600;
@@ -34,11 +34,15 @@
     max-width:35%;
 }
 
+.visually-hidden{
+    display: none;
+}
+
 @media (max-width:768px){
     .hireContainer .hireImage{
         display: none;
     }
-    .hireContainer form{
+    .hireContainer .formSignIn{
         width: 100%;
     }
 }

@@ -10,7 +10,7 @@ body {
   background-image: url('./components/Images/background.png'); /* Add the background image */
   background-size: cover; /* Ensure the image covers the entire card */
   background-position: center; /* Center the image */
-  /* background-repeat: no-repeat; */
+  background-repeat: no-repeat;
 }
 
 code {

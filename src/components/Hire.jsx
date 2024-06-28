@@ -6,7 +6,7 @@ export default function Hire(){
     return(
         <div className="hireContainer">
             <img src={HireImg} alt="Hire" className="hireImage" />
-            <form>
+            <form className="formSignIn">
                 <p style={{ textAlign: 'center',fontSize: '22px;',fontWeight:'600'}}>Hire Amazing Talent Here!</p>
                 <div class="form-floating m-2">
                     <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required />

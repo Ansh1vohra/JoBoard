@@ -3,6 +3,9 @@ import "./Internships.css";
 export default function Filter(){
     return(
         <section className="filterSection">
+                <div>
+                    <span style={{ fontSize: "18px" }}>Apply Filters</span>
+                </div>
                 <div className="searchBars">
                     <input className="form-control" placeholder="Keyword" />
                     <input className="form-control" placeholder="Profile" />
@@ -22,6 +25,7 @@ export default function Filter(){
                         </label>
                     </div>
                 </div>
+                <button className="btn btn-outline-light">Clear Filters</button>
             </section>
     )
 }
