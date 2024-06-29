@@ -7,7 +7,7 @@ export default function Internships() {
     const [internships, setInternships] = useState([]);
 
     useEffect(() => {
-        fetch('https://joboard-c8ya.onrender.com/api/jobs/internships')
+        fetch('http://localhost:5000/api/jobs/internships')
             .then(response => response.json())
             .then(data => setInternships(data))
             .catch(error => console.error('Error fetching internships:', error));

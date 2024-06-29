@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/internships', async (req, res) => {
     try {
         const db = getDB();
-        const internships = await db.collection('jobs').find({ jobType: "Internship" }).toArray();
+        const internships = await db.collection('Jobs').find({ jobType: "Internship" }).toArray();
         res.json(internships);
     } catch (err) {
         console.error('Failed to fetch internships:', err);
