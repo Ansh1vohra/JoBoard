@@ -34,7 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/internships" element={<Internships />} />
-        <Route path="/intern-details" element={<InternDetails />} />
+        <Route path="/intern-details/:id" component={InternDetails} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/SignIn" element={
           <Signin

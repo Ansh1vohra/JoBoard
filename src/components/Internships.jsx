@@ -15,7 +15,7 @@ export default function Internships() {
     });
 
     useEffect(() => {
-        fetch('https://joboard-c8ya.onrender.com/api/jobs/internships')
+        fetch('https://jo-board.vercel.app/api/jobs/internships')
             .then(response => response.json())
             .then(data => {
                 setInternships(data);
@@ -54,12 +54,15 @@ export default function Internships() {
     };
 
     const filteredInternships = internships.filter(internship => {
+        const jobTitle = internship.jobTitle || '';
+        const jobLocation = internship.jobLocation || '';
+        
         return (
-            (filters.keyword === '' || internship.jobTitle.toLowerCase().includes(filters.keyword.toLowerCase())) &&
-            (filters.profile === '' || internship.jobProfile.toLowerCase().includes(filters.profile.toLowerCase())) &&
-            (filters.location === '' || internship.jobLocation.toLowerCase().includes(filters.location.toLowerCase())) &&
-            (!filters.workFromHome || internship.workFromHome === filters.workFromHome) &&
-            (!filters.partTime || internship.partTime === filters.partTime)
+            (filters.keyword === '' || jobTitle.toLowerCase().includes(filters.keyword.toLowerCase())) &&
+            (filters.profile === '' || jobTitle.toLowerCase().includes(filters.profile.toLowerCase())) &&
+            (filters.location === '' || jobLocation.toLowerCase().includes(filters.location.toLowerCase())) &&
+            (!filters.workFromHome || jobLocation.toLowerCase() === 'work from home') &&
+            (!filters.partTime || internship.time.toLowerCase() === 'part time')
         );
     });
 
@@ -81,7 +84,7 @@ export default function Internships() {
                     </div>
                 ) : (
                     filteredInternships.map(internship => (
-                        <Link to="/intern-details" className="cardLink" key={internship._id}>
+                        <Link to={`/intern-details/${internship._id}`} className="cardLink" key={internship._id}>
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">{internship.jobTitle}</h5>
