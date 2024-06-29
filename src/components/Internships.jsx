@@ -7,7 +7,7 @@ export default function Internships() {
     const [internships, setInternships] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/jobs/internships')
+        fetch('https://joboard-c8ya.onrender.com/api/jobs/internships')
             .then(response => response.json())
             .then(data => setInternships(data))
             .then(document.getElementById('LoadSpinner').classList.add('visually-hidden'))
