@@ -10,6 +10,7 @@ export default function Internships() {
         fetch('http://localhost:5000/api/jobs/internships')
             .then(response => response.json())
             .then(data => setInternships(data))
+            .then(document.getElementById('LoadSpinner').classList.add('visually-hidden'))
             .catch(error => console.error('Error fetching internships:', error));
     }, []);
 
@@ -20,6 +21,9 @@ export default function Internships() {
                 <div>
                     <h3 className="p-3" style={{ textAlign: "center" }}>Find Internship that suits you well!</h3>
                 </div>
+                <div className="spinner-border" role="status" id="LoadSpinner">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
                 {internships.map(internship => (
                     <Link to="/intern-details" className="cardLink" key={internship._id}>
                         <div className="card">
@@ -28,7 +32,7 @@ export default function Internships() {
                                 <span className="card-text">{internship.companyName || 'Unknown Company'}</span>
                                 <div className="d-flex flex-column flex-md-row justify-content-between gap-2">
                                     <span>{internship.jobLocation}</span>
-                                    <span>{internship.duration || 'N/A'}</span>
+                                    <span>{internship.duration || 'N/A'} Months</span>
                                 </div>
                             </div>
                         </div>

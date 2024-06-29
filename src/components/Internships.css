@@ -30,6 +30,9 @@
 .cardGroup{
     height: 80vh;
     overflow-y:auto ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cardLink{
