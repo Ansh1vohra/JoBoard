@@ -8,7 +8,7 @@ export default function InternDetails() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`https://jo-board.vercel.app/api/jobs/internship/${id}`)
+        fetch(`http://localhost:5000/api/jobs/internship/${id}`)
             .then(response => response.json())
             .then(data => {
                 setInternship(data);
