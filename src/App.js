@@ -27,14 +27,14 @@ function App() {
   return (
     <div className="Content">
       <Header 
-      signIn={signIn}
-      setSignIn={setSignIn}
-      userName = {userName}
+        signIn={signIn}
+        setSignIn={setSignIn}
+        userName = {userName}
       />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/internships" element={<Internships />} />
-        <Route path="/intern-details/:id" component={InternDetails} />
+        <Route path="/intern-details/:id" element={<InternDetails />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/SignIn" element={
           <Signin

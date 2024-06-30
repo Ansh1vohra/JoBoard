@@ -15,48 +15,29 @@ export default function InternDetails() {
                 setLoading(false);
             })
             .catch(error => {
-                console.error('Error fetching internship:', error);
+                console.error('Error fetching internship details:', error);
                 setLoading(false);
             });
     }, [id]);
 
     if (loading) {
-        return (
-            <div className="internDetailsContainer">
-                <div className="spinner-border" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </div>
-        );
+        return <div>Loading...</div>;
     }
 
     if (!internship) {
-        return (
-            <div className="internDetailsContainer">
-                <h2>Internship not found</h2>
-            </div>
-        );
+        return <div>Internship not found</div>;
     }
 
     return (
         <div className="internDetailsContainer">
             <h2>{internship.jobTitle}</h2>
-            <span className="companyName"><i>{internship.companyName}</i></span>
-            <p className="description">{internship.description}</p>
-            <p className="skills">
-                <strong>Skills:</strong>
-                <br />
-                {internship.skills.join(', ')}
-            </p>
-            <p className="details">
-                <strong>Duration:</strong> {internship.duration} Months
-                <br />
-                <strong>Location:</strong> {internship.jobLocation}
-                <br />
-                <strong>Time:</strong> {internship.time}
-                <br />
-                <strong>Last Date to Apply:</strong> {internship.lastDateToApply}
-            </p>
+            <span><i>{internship.companyName}</i></span>
+            <p>{internship.description}</p>
+            <p>Skills: {internship.skills.split(',').join(', ')}</p>
+            <p>Duration: {internship.duration} Months</p>
+            <p>Location: {internship.jobLocation}</p>
+            <p>Type: {internship.time}</p>
+            <p>Last Date to Apply: {new Date(internship.lastDate.$date).toLocaleDateString()}</p>
             <button className="btn btn-dark">Apply Now!</button>
         </div>
     );

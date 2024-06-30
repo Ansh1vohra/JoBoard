@@ -1,7 +1,23 @@
-.internDetailsContainer{
-    display:flex;
-    flex-direction: column;
-    text-align:center;
-    padding: 1.5rem;
-    gap:1rem;
+.internDetailsContainer {
+    padding: 20px;
+}
+
+.internDetailsContainer h2 {
+    margin-bottom: 10px;
+}
+
+.internDetailsContainer span {
+    display: block;
+    margin-bottom: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+.internDetailsContainer p {
+    margin-bottom: 10px;
+}
+
+.internDetailsContainer .btn {
+    display: block;
+    margin-top: 20px;
 }
