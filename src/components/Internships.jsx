@@ -84,7 +84,7 @@ export default function Internships() {
                     </div>
                 ) : (
                     filteredInternships.map(internship => (
-                        <Link to={`/intern-details/${internship.jobID}`} className="cardLink" key={internship.jobID}>
+                        <Link to={`/job-details/${internship.jobID}`} className="cardLink" key={internship.jobID}>
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">{internship.jobTitle}</h5>

@@ -1,0 +1,66 @@
+.applicationFormContainer {
+    width: 700px;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:stretch;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ffffff6a;
+    /* color: #fff; */
+}
+
+.applicationFormContainer h2 {
+    font-weight: 600;
+    font-size:24px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.applicationFormContainer p{
+    text-align: center;
+}
+
+.applicationFormContainer form {
+    display: flex;
+    flex-direction: column;
+}
+
+.applicationFormContainer form div {
+    margin-bottom: 1rem;
+}
+
+.applicationFormContainer form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.applicationFormContainer form input,
+.applicationFormContainer form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.applicationFormContainer form button {
+    padding: 10px 20px;
+    background-color:#27739f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.applicationFormContainer form button:hover {
+    background-color: #2c88be;
+}
+
+@media (max-width:768px){
+    .applicationFormContainer{
+        width:fit-content;
+    }
+}

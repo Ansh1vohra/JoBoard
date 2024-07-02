@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Internships from "./components/Internships";
 import InternDetails from "./components/InternDetails";
 import Jobs from "./components/Jobs";
+import ApplicationForm from './components/ApplicationForm';
 import Signin from "./components/Signin";
 import Hire from "./components/Hire";
 import HireLogin from "./components/HireLogin";
@@ -34,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/internships" element={<Internships />} />
-        <Route path="/intern-details/:id" element={<InternDetails />} />
+        <Route path="/job-details/:id" element={<InternDetails />} />
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/SignIn" element={
           <Signin
@@ -44,6 +45,7 @@ function App() {
             setUserName = {setUserName}
           />
         } />
+        <Route path='/job-details/:id/apply' element={<ApplicationForm />} />
         <Route path="/hire" element={<Hire />} />
         <Route path="/hire/login" element={<HireLogin />} />
         <Route path="/hire/dashboard" element={<HireDashborad />} />
