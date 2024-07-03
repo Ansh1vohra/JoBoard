@@ -44,7 +44,9 @@ router.get('/jobdetail/:id', async (req, res) => {
             console.log('Internship not found');
             return res.status(404).json({ message: 'Internship not found' });
         }
-        res.json(internship);
+        const companyDetails = await db.collection('Company').findOne({companyId:internship.CompanyId});
+        const jobDetails = {...internship,companyName:companyDetails.companyName};
+        res.json(jobDetails);
     } catch (error) {
         console.error('Error fetching internship:', error);
         res.status(500).json({ message: 'Error fetching internship', error: error.message });
