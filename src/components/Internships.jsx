@@ -15,7 +15,7 @@ export default function Internships() {
     });
 
     useEffect(() => {
-        fetch('https://jo-board.vercel.app/api/jobs/internships')
+        fetch('https://localhost:5000/api/jobs/internships')
             .then(response => response.json())
             .then(data => {
                 setInternships(data);
