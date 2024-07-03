@@ -18,7 +18,7 @@ export default function Internships() {
         fetch('https://jo-board.vercel.app/api/jobs/internships')
             .then(response => response.json())
             .then(data => {
-                setInternships(data);
+                setInternships(data.internships);
                 setLoading(false);
             })
             .catch(error => {

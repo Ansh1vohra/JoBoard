@@ -13,7 +13,7 @@ router.get('/internships', async (req, res) => {
             return { ...app, companyName: job.companyName, postedOn: app._id.getTimestamp() };
         }));
 
-        res.status(200).json({ applications: detailedInternships });
+        res.status(200).json({ internships: detailedInternships });
     } catch (err) {
         console.error('Failed to fetch internships:', err);
         res.status(500).json({ message: 'Server error', error: err.message });
