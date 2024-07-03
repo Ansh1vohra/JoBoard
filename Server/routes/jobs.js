@@ -7,7 +7,6 @@ router.get('/internships', async (req, res) => {
     try {
         const db = getDB();
         const internships = await db.collection('Jobs').find({ jobType: "Internship" }).toArray();
-        // res.json(internships);
         const detailedInternships = await Promise.all(internships.map(async (app) => {
             const job = await db.collection('Company').findOne({ companyId: app.CompanyId });
             return { ...app, companyName: job.companyName, postedOn: app._id.getTimestamp() };
@@ -23,7 +22,12 @@ router.get('/getjobs', async (req, res) => {
     try {
         const db = getDB();
         const jobs = await db.collection('Jobs').find({ jobType: "Job" }).toArray();
-        res.json(jobs);
+        const detailedJobs = await Promise.all(jobs.map(async (app) => {
+            const job = await db.collection('Company').findOne({ companyId: app.CompanyId });
+            return { ...app, companyName: job.companyName, postedOn: app._id.getTimestamp() };
+        }));
+
+        res.status(200).json({ jobs: detailedJobs });
     } catch (err) {
         console.error('Failed to fetch jobs:', err);
         res.status(500).json({ message: 'Server error', error: err.message });

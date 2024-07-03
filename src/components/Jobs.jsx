@@ -18,7 +18,7 @@ export default function Jobs() {
         fetch('https://jo-board.vercel.app/api/jobs/getjobs')
             .then(response => response.json())
             .then(data => {
-                setJobs(data);
+                setJobs(data.jobs);
                 setLoading(false);
             })
             .catch(error => {
