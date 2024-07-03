@@ -9,7 +9,7 @@ export default function InternDetails() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/jobs/jobdetail/${id}`)
+        fetch(`https://jo-board.vercel.app/api/jobs/jobdetail/${id}`)
             .then(response => response.json())
             .then(data => {
                 data.description = data.description.replace(/\\n/g, '\n');

@@ -15,7 +15,7 @@ export default function Jobs() {
     });
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/jobs/getjobs')
+        fetch('https://jo-board.vercel.app/api/jobs/getjobs')
             .then(response => response.json())
             .then(data => {
                 setJobs(data);

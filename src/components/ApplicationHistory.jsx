@@ -11,7 +11,7 @@ export default function ApplicationHistory() {
         const userMail = localStorage.getItem('UserMail');
 
         // Fetch the application history from the backend
-        fetch('http://localhost:5000/api/application/userApplications', {
+        fetch('https://jo-board.vercel.app/api/application/userApplications', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

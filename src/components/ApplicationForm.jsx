@@ -13,7 +13,7 @@ export default function ApplicationForm() {
     let userMail = "";
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/jobs/jobdetail/${id}`)
+        fetch(`https://jo-board.vercel.app/api/jobs/jobdetail/${id}`)
             .then(response => response.json())
             .then(data => {
                 data.description = data.description.replace(/\\n/g, '\n');
@@ -62,7 +62,7 @@ export default function ApplicationForm() {
         formData.append('resume', resume);
         formData.append('coverLetter', coverLetter);
 
-        fetch(`http://localhost:5000/api/application/applyJob`, {
+        fetch(`https://jo-board.vercel.app/api/application/applyJob`, {
             method: 'POST',
             body: formData,
         })
