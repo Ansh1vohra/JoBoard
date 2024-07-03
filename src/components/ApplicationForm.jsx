@@ -111,7 +111,7 @@ export default function ApplicationForm() {
                             required
                         ></textarea>
                     </div>
-                    <p>Last Date to Apply: {new Date(job.lastDate.$date).toLocaleDateString()}</p>
+                    <p>Last Date to Apply: {new Date(job.lastDate).toLocaleDateString()}</p>
                     <button type="submit">Submit Application</button>
                 </form>
             </div>

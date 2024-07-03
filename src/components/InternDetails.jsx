@@ -61,7 +61,7 @@ export default function InternDetails() {
             <p>Duration: {job.duration} Months</p>
             <p>Location: {job.jobLocation}</p>
             <p>Type: {job.time}</p>
-            <p>Last Date to Apply: {new Date(job.lastDate.$date).toLocaleDateString()}</p>
+            <p>Last Date to Apply: {new Date(job.lastDate).toLocaleDateString()}</p>
             <Link style={{textDecoration:'none'}} to={`/job-details/${id}/apply`}>
                 <button className="btn btn-danger">Apply Now!</button>
             </Link>

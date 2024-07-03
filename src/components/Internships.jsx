@@ -58,7 +58,7 @@ export default function Internships() {
         const jobLocation = internship.jobLocation || '';
         
         return (
-            (filters.keyword === '' || jobTitle.toLowerCase().includes(filters.keyword.toLowerCase())) &&
+            (filters.keyword === '' || internship.companyName.toLowerCase().includes(filters.keyword.toLowerCase())) &&
             (filters.profile === '' || jobTitle.toLowerCase().includes(filters.profile.toLowerCase())) &&
             (filters.location === '' || jobLocation.toLowerCase().includes(filters.location.toLowerCase())) &&
             (!filters.workFromHome || jobLocation.toLowerCase() === 'work from home') &&
