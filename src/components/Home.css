@@ -102,6 +102,19 @@ section {
     color: #555;
 }
 
+.aboutContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    padding: 2rem;
+    gap:1rem;
+    text-align: center;
+    animation: fadeIn 0.65s ease-in-out;
+    margin :0 4rem;
+}
+
 @media (max-width: 768px) {
     .homeContent {
         flex-direction: column;

@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import "./ApplicationForm.css";
 
 export default function ApplicationForm() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [job, setJob] = useState(null);
     const [loading, setLoading] = useState(true);
     const [resume, setResume] = useState(null);
     const [coverLetter, setCoverLetter] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    let userMail = "";
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/jobs/jobdetail/${id}`)
@@ -22,19 +25,29 @@ export default function ApplicationForm() {
             });
     }, [id]);
 
+    if (localStorage.getItem('UserMail')) {
+        userMail = localStorage.getItem('UserMail');
+    } else {
+        navigate('/signin');
+    }
+
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className='error'>
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>;
     }
 
     if (!job) {
-        return <div>Job not found</div>;
+        return <div className='error'>Job not found</div>;
     }
 
     const fileUpload = (event) => {
         const file = event.target.files[0];
         if (file && file.size > 2097152) {
-            alert("File is too big! Maximum size allowed is 2MB.");
-            event.target.value = ""; // Clear the file input
+            setShowModal(true);
+            event.target.value = "";
         } else {
             setResume(file);
         }
@@ -44,18 +57,20 @@ export default function ApplicationForm() {
         event.preventDefault();
         
         const formData = new FormData();
+        formData.append('userMail', userMail);
         formData.append('jobID', id);
         formData.append('resume', resume);
         formData.append('coverLetter', coverLetter);
 
-        fetch(`http://localhost:5000/api/jobdetail/${id}/apply`, {
+        fetch(`http://localhost:5000/api/application/applyJob`, {
             method: 'POST',
             body: formData,
         })
         .then(response => response.json())
         .then(data => {
             if (data.message === 'Application Posted Successfully!') {
-                alert("Your application has been submitted successfully!");
+                alert('Application Submitted');
+                navigate('/application-history');
             } else {
                 alert(data.message);
             }
@@ -100,6 +115,30 @@ export default function ApplicationForm() {
                     <button type="submit">Submit Application</button>
                 </form>
             </div>
+            {showModal && (
+                <div className="modal" id="FileSizeLimit">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title text-danger" id='modalTitle'>
+                            File Size Too Large</h5>
+                        <button
+                            type="button"
+                            className="btn-close"
+                            onClick={() => {
+                                setShowModal(false);
+                            }}
+                        >
+                        </button>
+
+                    </div>
+                    <div className="modal-body" id="modalBody">
+                        <p>The File Limit is only 2MB.</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            )}
         </div>
     );
 }

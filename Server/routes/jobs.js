@@ -41,23 +41,4 @@ router.get('/jobdetail/:id', async (req, res) => {
     }
 });
 
-router.post('/jobdetail/:id/apply', async(req,res)=>{
-    const { userMail,resumeLink,CV } = req.body;
-    const db = getDB();
-    const jobID = req.params.id;
-    try{
-        let applied = await db.collection('Applications').findOne({ userMail: userMail, jobID: jobID });
-        if (!applied){
-            const Application = {userMail,jobID,resumeLink,CV,};
-            const postApplication = await db.collection('Applications').insertOne(Application);
-            return res.status(201).json({ message: 'Application Posted Successfully!', applicationId: postApplication.insertedId });
-        } else{
-            return res.status(200).json({ message: 'User Have Already Applied For this Job', userMail });
-        }
-    }catch(error){
-        console.error("Error Posting the Application :", error);
-        res.status(500).json({message:'Error Posting the Application',error:error.message});
-    }
-})
-
 module.exports = router;

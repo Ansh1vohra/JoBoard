@@ -59,6 +59,21 @@
     background-color: #2c88be;
 }
 
+.modal{
+    z-index: 1022;
+    display: block;
+    background-color: #00000054;
+}
+
+
+.error {
+    text-align: center;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media (max-width:768px){
     .applicationFormContainer{
         width:fit-content;

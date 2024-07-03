@@ -74,13 +74,15 @@ export default function Internships() {
                 handleCheckboxChange={handleCheckboxChange}
                 clearFilters={clearFilters}
             />
-            <section className="cardGroup">
+            <div className="cardGroup">
                 <div>
                     <h3 className="p-3" style={{ textAlign: "center" }}>Find Internship that suits you well!</h3>
                 </div>
                 {loading ? (
-                    <div className="spinner-border" role="status" id="LoadSpinner">
-                        <span className="visually-hidden">Loading...</span>
+                    <div className='spinner'>
+                        <div className="spinner-border" role="status" id="LoadSpinner">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
                     </div>
                 ) : (
                     filteredInternships.map(internship => (
@@ -98,7 +100,7 @@ export default function Internships() {
                         </Link>
                     ))
                 )}
-            </section>
+            </div>
         </main>
     );
 }

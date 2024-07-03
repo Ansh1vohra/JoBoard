@@ -3,15 +3,17 @@ import {useEffect, useState} from 'react';
 import './App.css';
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Signin from "./components/Signin";
 import Internships from "./components/Internships";
 import InternDetails from "./components/InternDetails";
 import Jobs from "./components/Jobs";
 import ApplicationForm from './components/ApplicationForm';
-import Signin from "./components/Signin";
+import ApplicationHistory from './components/ApplicationHistory';
 import Hire from "./components/Hire";
 import HireLogin from "./components/HireLogin";
 import HireDashborad from "./components/HireDashboard";
 import About from "./components/About";
+import Terms from "./components/Terms";
 import Footer from './components/Footer';
 
 function App() {
@@ -45,11 +47,17 @@ function App() {
             setUserName = {setUserName}
           />
         } />
-        <Route path='/job-details/:id/apply' element={<ApplicationForm />} />
+        <Route path='/job-details/:id/apply' element={
+          <ApplicationForm 
+            signIn={signIn}
+          />
+        } />
+        <Route path="/application-history" element={<ApplicationHistory />} />
         <Route path="/hire" element={<Hire />} />
         <Route path="/hire/login" element={<HireLogin />} />
         <Route path="/hire/dashboard" element={<HireDashborad />} />
         <Route path="/about" element={<About />} />
+        <Route path="/terms" element={<Terms />} />
       </Routes>
       <Footer />
     </div>

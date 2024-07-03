@@ -4,6 +4,7 @@ const cors = require('cors');
 const { connectDB } = require('./config/db');
 const userRoutes = require('./routes/user');
 const jobRoutes = require('./routes/jobs');
+const applicationRoutes = require('./routes/application');
 
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
 app.use('/api/jobs', jobRoutes);
+app.use('/api/application', applicationRoutes);
 
 const PORT = process.env.PORT || 5000;
 

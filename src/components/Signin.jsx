@@ -41,6 +41,7 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
                 setSignIn(true);
                 setUserName(user.displayName);
                 localStorage.setItem('UserName',user.displayName);
+                localStorage.setItem('UserMail',user.email);
                 // Send user details to the Database
                 await fetch('https://jo-board.vercel.app/api/users/signin', {
                     method: 'POST',
@@ -62,6 +63,9 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
         } catch (error) {
             localStorage.setItem('SignIn',false);
             setSignIn(false);
+            setUserName("");
+            localStorage.setItem('UserName',"");
+            localStorage.setItem('UserMail',"");
             spinner.classList.add("visually-hidden");
             document.getElementById("Gbtn").classList.remove("disabled");
             document.getElementById("GbtnIn").classList.remove("visually-hidden");
@@ -116,11 +120,13 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
         if (otp === otpGen){
             localStorage.setItem('SignIn',true);
             setSignIn(true);
+            localStorage.setItem('UserMail',e_mail);
             navigate("../");
         }else{
             document.getElementById('loginFail').classList.remove('visually-hidden');
             localStorage.setItem('SignIn',false);
             setSignIn(false);
+            localStorage.setItem('UserMail',"");
         }
     }
 
