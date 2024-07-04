@@ -10,9 +10,16 @@ export default function ApplicationForm() {
     const [resume, setResume] = useState(null);
     const [coverLetter, setCoverLetter] = useState("");
     const [showModal, setShowModal] = useState(false);
-    let userMail = "";
+    const [userMail, setUserMail] = useState("");
 
     useEffect(() => {
+        const isSignedIn = localStorage.getItem('SignIn') === 'true';
+        if (isSignedIn) {
+            setUserMail(localStorage.getItem('UserMail'));
+        } else {
+            navigate('/signin');
+        }
+
         fetch(`https://jo-board.vercel.app/api/jobs/jobdetail/${id}`)
             .then(response => response.json())
             .then(data => {
@@ -23,18 +30,12 @@ export default function ApplicationForm() {
             .catch(error => {
                 console.error('Error fetching job details:', error);
             });
-            if (localStorage.getItem('SignIn')=== true) {
-                userMail = localStorage.getItem('UserMail');
-            } else {
-                navigate('/signin');
-            }
-    }, [id]);
-
+    }, [id, navigate]);
 
     if (loading) {
         return <div className='error'>
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
             </div>
         </div>;
     }
