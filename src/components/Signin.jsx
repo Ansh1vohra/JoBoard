@@ -37,13 +37,9 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
             const user = result.user;
 
             if (user) {
-                localStorage.setItem('SignIn', true);
-                setSignIn(true);
-                setUserName(user.displayName);
-                localStorage.setItem('UserName',user.displayName);
-                localStorage.setItem('UserMail',user.email);
+                
                 // Send user details to the Database
-                await fetch('https://jo-board.vercel.app/api/users/signin', {
+                const dbUpdate=await fetch('https://jo-board.vercel.app/api/users/signin', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -56,6 +52,14 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
                         OTP:'000000'
                     })
                 });
+                
+                if (dbUpdate){
+                    localStorage.setItem('SignIn', true);
+                    setSignIn(true);
+                    setUserName(user.displayName);
+                    localStorage.setItem('UserName',user.displayName);
+                    localStorage.setItem('UserMail',user.email);
+                }
             }
 
             console.log(user);

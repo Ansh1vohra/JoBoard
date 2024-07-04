@@ -15,6 +15,7 @@ import HireDashborad from "./components/HireDashboard";
 import About from "./components/About";
 import Terms from "./components/Terms";
 import Footer from './components/Footer';
+import NotFound from './components/NotFound';
 
 function App() {
   const status = localStorage.getItem("SignIn");
@@ -58,6 +59,7 @@ function App() {
         <Route path="/hire/dashboard" element={<HireDashborad />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>
