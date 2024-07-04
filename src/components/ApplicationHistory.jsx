@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './ApplicationHistory.css';
 
 export default function ApplicationHistory() {
@@ -9,14 +9,18 @@ export default function ApplicationHistory() {
 
     useEffect(() => {
         const userMail = localStorage.getItem('UserMail');
+        if (!userMail) {
+            setError(new Error('UserMail not found in localStorage'));
+            setLoading(false);
+            return;
+        }
 
-        // Fetch the application history from the backend
-        fetch('https://jo-board.vercel.app/api/application/userApplications', {
+        fetch('http://localhost:5000/api/application/userApplications', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ userMail }) // Send userMail in the body
+            body: JSON.stringify({ userMail })
         })
         .then(response => {
             if (!response.ok) {
@@ -36,38 +40,39 @@ export default function ApplicationHistory() {
     }, []);
 
     if (loading) {
-        return <main className='mainContainer placeholder'>
-
-                    <div className="applicationHistoryContainer">
-                        <h2 className='placeholder'>Application History</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th className='placeholder'>Job Title</th>
-                                    <th className='placeholder'>Company Name</th>
-                                    <th className='placeholder'>Applied On</th>
-                                </tr>
-                                <tr>
-                                    <th className='placeholder'>Job Title</th>
-                                    <th className='placeholder'>Company Name</th>
-                                    <th className='placeholder'>Applied On</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                    <tr>
-                                        <td className='placeholder'>Test</td>
-                                        <td className='placeholder'>Test</td>
-                                        <td className='placeholder'>Test</td>
-                                    </tr>
-                                    <tr>
-                                        <td className='placeholder'>Test</td>
-                                        <td className='placeholder'>Test</td>
-                                        <td className='placeholder'>Test</td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    </main>;
+        return (
+            <main className='mainContainer placeholder'>
+                <div className="applicationHistoryContainer">
+                    <h2 className='placeholder'>Application History</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th className='placeholder'>Job Title</th>
+                                <th className='placeholder'>Company Name</th>
+                                <th className='placeholder'>Applied On</th>
+                            </tr>
+                            <tr>
+                                <th className='placeholder'>Job Title</th>
+                                <th className='placeholder'>Company Name</th>
+                                <th className='placeholder'>Applied On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td className='placeholder'>Test</td>
+                                <td className='placeholder'>Test</td>
+                                <td className='placeholder'>Test</td>
+                            </tr>
+                            <tr>
+                                <td className='placeholder'>Test</td>
+                                <td className='placeholder'>Test</td>
+                                <td className='placeholder'>Test</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        );
     }
 
     if (error) {
@@ -75,35 +80,37 @@ export default function ApplicationHistory() {
     }
 
     if (applications.length === 0) {
-        return <div className='error'>You have not applied for any jobs yet.
-            <Link to='/jobs'><button className='btn btn-outline-dark'>Search for Jobs</button></Link>
-        </div>;
+        return (
+            <div className='error'>
+                You have not applied for any jobs yet.
+                <Link to='/jobs'><button className='btn btn-outline-dark'>Search for Jobs</button></Link>
+            </div>
+        );
     }
 
     return (
         <main className='mainContainer'>
-
-        <div className="applicationHistoryContainer">
-            <h2>Application History</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Job Title</th>
-                        <th>Company Name</th>
-                        <th>Applied On</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {applications.map(application => (
-                        <tr key={application._id}>
-                            <td>{application.jobTitle}</td>
-                            <td>{application.companyName}</td>
-                            <td>{new Date(application.appliedOn).toLocaleDateString()}</td>
+            <div className="applicationHistoryContainer">
+                <h2>Application History</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Company Name</th>
+                            <th>Applied On</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {applications.map(application => (
+                            <tr key={application._id}>
+                                <td>{application.jobTitle}</td>
+                                <td>{application.companyName}</td>
+                                <td>{new Date(application.appliedOn).toLocaleDateString()}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </main>
     );
 }

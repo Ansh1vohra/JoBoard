@@ -23,13 +23,13 @@ export default function ApplicationForm() {
             .catch(error => {
                 console.error('Error fetching job details:', error);
             });
+            if (localStorage.getItem('SignIn')=== true) {
+                userMail = localStorage.getItem('UserMail');
+            } else {
+                navigate('/signin');
+            }
     }, [id]);
 
-    if (localStorage.getItem('UserMail')) {
-        userMail = localStorage.getItem('UserMail');
-    } else {
-        navigate('/signin');
-    }
 
     if (loading) {
         return <div className='error'>

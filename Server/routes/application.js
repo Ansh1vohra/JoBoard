@@ -27,28 +27,36 @@ router.post('/applyJob', upload.single('resume'), async (req, res) => {
 });
 
 router.post('/userApplications', async (req, res) => {
-    const { userMail } = req.body; // Extract userMail from the request body
+    const { userMail } = req.body;
     if (!userMail) {
         return res.status(400).json({ message: 'UserMail not provided' });
     }
     const db = getDB();
     try {
-        const applications = await db.collection('Applications')
-            .find({ userMail })
-            .toArray();
+        const applications = await db.collection('Applications').find({ userMail }).toArray();
 
-        // Fetch job details for each application (if needed)
         const detailedApplications = await Promise.all(applications.map(async (app) => {
             const job = await db.collection('Jobs').findOne({ jobID: app.jobID });
-            return { ...app, jobTitle: job.jobTitle, companyName: job.companyName, appliedOn: app._id.getTimestamp() };
+            if (!job) return null;
+
+            const company = await db.collection('Company').findOne({ companyId: job.CompanyId });
+            if (!company) return null;
+
+            return {
+                ...app,
+                jobTitle: job.jobTitle,
+                companyName: company.companyName,
+                appliedOn: app._id.getTimestamp()
+            };
         }));
 
-        res.status(200).json({ applications: detailedApplications });
+        const validApplications = detailedApplications.filter(app => app !== null);
+
+        res.status(200).json({ applications: validApplications });
     } catch (error) {
         console.error("Error fetching application history:", error);
         res.status(500).json({ message: 'Error fetching application history', error: error.message });
     }
 });
-
 
 module.exports = router;

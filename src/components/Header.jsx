@@ -1,9 +1,10 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import userImg from './Images/UserIcon.png'
 
 export default function Header({ signIn, setSignIn, userName }) {
+    const navigate = useNavigate();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
@@ -60,15 +61,16 @@ export default function Header({ signIn, setSignIn, userName }) {
                 <div className="offcanvas-body">
                     <div className='d-flex flex-column gap-3'>
                         <Link className="sideMenuLink" to="/application-history" onClick={closeMenu}>My Applications</Link>
-                        <Link className="sideMenuLink" to="/profile" onClick={closeMenu}>Profile</Link>
+                        {/* <Link className="sideMenuLink" to="/profile" onClick={closeMenu}>Profile</Link> */}
                         <Link className="sideMenuLink" to="/internships" onClick={closeMenu}>Internships</Link>
                         <Link className="sideMenuLink" to="/jobs" onClick={closeMenu}>Jobs</Link>
                         <Link className="sideMenuLink" to="/about" onClick={closeMenu}>About</Link>
-                        <Link className="sideMenuLink" to="/SignIn" onClick={() => {
+                        <div className="sideMenuLink" onClick={() => {
                             localStorage.setItem("SignIn", false);
                             setSignIn(false);
                             closeMenu();
-                        }}>Sign-Out</Link>
+                            navigate('/signin');
+                        }}>Sign-Out</div>
                     </div>
                 </div>
             </div>
