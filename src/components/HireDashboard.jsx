@@ -12,8 +12,8 @@ function Dashboard() {
             <h1>Hiring Dashboard</h1>
             <nav className='m-3'>
                 <div className="nav nav-tabs" id="nav-tab" role="tablist">
-                <button className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Post Job/Internship</button>
-                <button className="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Status of Posted Jobs/Internships</button>
+                    <button className="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Post Job/Internship</button>
+                    <button className="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Status of Posted Jobs/Internships</button>
                 </div>
             </nav>
             <div className="tab-content m-3" id="nav-tabContent">

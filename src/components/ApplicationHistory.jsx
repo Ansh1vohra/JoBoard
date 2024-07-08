@@ -41,32 +41,22 @@ export default function ApplicationHistory() {
 
     if (loading) {
         return (
-            <main className='mainContainer placeholder'>
+            <main className='mainContainer'>
                 <div className="applicationHistoryContainer">
-                    <h2 className='placeholder'>Application History</h2>
+                    <h2 >Application History</h2>
                     <table>
                         <thead>
                             <tr>
-                                <th className='placeholder'>Job Title</th>
-                                <th className='placeholder'>Company Name</th>
-                                <th className='placeholder'>Applied On</th>
-                            </tr>
-                            <tr>
-                                <th className='placeholder'>Job Title</th>
-                                <th className='placeholder'>Company Name</th>
-                                <th className='placeholder'>Applied On</th>
+                                <th>Job Title</th>
+                                <th>Company Name</th>
+                                <th>Applied On</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td className='placeholder'>Test</td>
-                                <td className='placeholder'>Test</td>
-                                <td className='placeholder'>Test</td>
-                            </tr>
-                            <tr>
-                                <td className='placeholder'>Test</td>
-                                <td className='placeholder'>Test</td>
-                                <td className='placeholder'>Test</td>
+                                <td>Loading Title.....</td>
+                                <td>Loading Company.....</td>
+                                <td>Loading.....</td>
                             </tr>
                         </tbody>
                     </table>

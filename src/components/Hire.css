@@ -38,6 +38,12 @@
     display: none;
 }
 
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
 @media (max-width:768px){
     .hireContainer .hireImage{
         display: none;
