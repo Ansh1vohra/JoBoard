@@ -8,11 +8,16 @@
     margin:0 auto;
 }
 
-form{
+.jobform{
+    /* max-width: 780px; */
+    /* min-width: 315px; */
     display: flex;
     flex-direction: column;
-    padding:1rem;
+    padding:1.5rem;
     gap:1rem;
+    text-align: left;
+    border-radius: 15px;
+    background-color: rgba(129, 194, 255, 0.43);
 }
 .postedMsg{
     font-size: 1rem;
@@ -44,6 +49,10 @@ form{
 .lastDate{
     display: flex;
     gap:3rem;
+}
+
+.nav-link .new{
+    color: black;
 }
 
 @media (max-width:768px) {

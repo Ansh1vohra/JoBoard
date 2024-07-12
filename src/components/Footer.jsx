@@ -9,7 +9,7 @@ export default function Footer(){
                 <ul>
                     <li><Link to="/about">About Us</Link></li>
                     <li><Link to="/terms">Terms and Conditions</Link></li>
-                    <li><Link to="/hire">Hire</Link></li>
+                    <li><Link to="/hire/login">Hire</Link></li>
                     <li><Link to="/internships">Find Internships</Link></li>
                     <li><Link to="/jobs">Find Jobs</Link></li>
                 </ul>

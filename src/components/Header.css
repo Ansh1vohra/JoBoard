@@ -10,7 +10,7 @@
     color:#f5f5f5;
 }
 
-.Head logo{
+.Head .logo{
     font-size: 1.25rem;
     font-weight: 450;
 }
@@ -80,5 +80,4 @@
     .navList{
         display: none;
     }
-    
 }

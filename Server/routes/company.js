@@ -82,4 +82,24 @@ Thanks for using JoBoard.`);
     }
 });
 
+router.post('/verifyUser', async(req,res) => {
+    const {email,password} = req.body;
+    const db = getDB();
+    try{
+        const user = await db.collection('Company').findOne({companyMail:email});
+        if (user){
+            if (password === user.password){
+                return res.status(200).json({message:'Sign In Success'});
+            } else{
+                return res.status(401).json({message:'Invalid Password!'});
+            }
+        }else{
+            return res.status(404).json({message:'User Not Found!'});
+        }
+    }catch{
+        console.error('Error occurred while sending OTP:', err);
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+});
+
 module.exports = router;
