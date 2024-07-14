@@ -2,6 +2,7 @@ import './Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import userImg from './Images/UserIcon.png';
+import Logo from './Images/logoNew.png';
 
 export default function Header({ signIn, setSignIn, userName, recSignIn, setRecSignIn }) {
     const navigate = useNavigate();
@@ -47,7 +48,8 @@ export default function Header({ signIn, setSignIn, userName, recSignIn, setRecS
     return (
         <nav className="Head sticky-top">
             <div className='d-flex align-items-center gap-3'>
-                <Link className="navbar-brand" to="/">
+                <Link to="/" className='navbar-brand d-flex align-items-center gap-1' >
+                    <img src={Logo} alt="Logo" width="37px" />
                     <div className="logo">JoBoard</div>
                 </Link>
                 <div className="navList">

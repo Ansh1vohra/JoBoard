@@ -152,7 +152,7 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
                     <div class="spinner-border visually-hidden" role="status" id="Gspinner"></div>
                 </button>
                 <hr />
-                <p >or</p>
+                <span>or</span>
                 <form id="emailForm" className="d-flex flex-column" onSubmit={sendOTP}>
                     <div className="form-floating m-2" id="emailInputCont">
                         <input 
