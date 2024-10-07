@@ -1,3 +1,11 @@
 .Content{
   min-height: 100vh;
 }
+
+.btn-dark{
+  background-color: #16425B;
+}
+
+.btn-dark:hover{
+  background-color: #245775;
+}

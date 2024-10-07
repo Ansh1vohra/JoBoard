@@ -1,0 +1,16 @@
+.applications{
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.applicationCard{
+    background-color: rgb(255, 255, 255);
+    padding: 1rem;
+    margin: 1rem;
+    width: 80vw;
+    border-radius:10px;
+    overflow-x:auto ;
+}

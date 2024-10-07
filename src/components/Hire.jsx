@@ -10,7 +10,7 @@ export default function Hire() {
     const [companyName, setCompanyName] = useState('');
     const [OTP, setOTP] = useState('');
     const [generatedOTP, setGeneratedOTP] = useState('');
-    const errorMsg = document.getElementById('errorMessage');
+    const [errorMsg, setErrorMsg] = useState('');
 
     function generateOTP() {
         return Math.floor(100000 + Math.random() * 900000).toString();
@@ -33,49 +33,36 @@ export default function Hire() {
                 });
                 const data = await response.json();
                 if (response.status === 409) {
-                    errorMsg.classList.remove('visually-hidden');
-                    errorMsg.innerText=data.message+'\nThis mail have already Registered, Try Signing In Just by clicking link above';
+                    setErrorMsg(data.message + '\nThis mail has already Registered, Try Signing In Just by clicking the link above');
                 } else if (response.ok) {
                     document.getElementById('formCont1').classList.add('visually-hidden');
                     document.getElementById('formCont2').classList.remove('visually-hidden');
-                    errorMsg.classList.add('visually-hidden');
+                    setErrorMsg('');
                     console.log(data.message);
                 } else {
-                    errorMsg.classList.remove('visually-hidden');
-                    errorMsg.innerText='Failed to Send OTP';
+                    setErrorMsg('Failed to Send OTP');
                 }
             } catch (error) {
-                errorMsg.classList.remove('visually-hidden');
-                errorMsg.innerText='Failed to Send OTP';
+                setErrorMsg('Failed to Send OTP');
             }
         } else {
-            // alert("Enter all the details");
-            if (!email){
-                errorMsg.classList.remove('visually-hidden');
-                errorMsg.innerText='We can not proceed without e-mail';
-            }
-            else if (!password){
-                errorMsg.classList.remove('visually-hidden');
-                errorMsg.innerText='Please Enter a Password';
-            }
-            else if (!companyName){
-                errorMsg.classList.remove('visually-hidden');
-                errorMsg.innerText='Please let us know what we can call you!';
-            }
-            else{
-                errorMsg.classList.remove('visually-hidden');
-                errorMsg.innerText='Error : can Not Proceed';
+            if (!email) {
+                setErrorMsg('We cannot proceed without e-mail');
+            } else if (!password) {
+                setErrorMsg('Please Enter a Password');
+            } else if (!companyName) {
+                setErrorMsg('Please let us know what we can call you!');
+            } else {
+                setErrorMsg('Error: Cannot Proceed');
             }
         }
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(!OTP){
-            errorMsg.classList.remove('visually-hidden');
-            errorMsg.innerText='Enter OTP';
-        }
-        if (OTP === generatedOTP) {
+        if (!OTP) {
+            setErrorMsg('Enter OTP');
+        } else if (OTP === generatedOTP) {
             try {
                 const response = await fetch('http://localhost:5000/api/company/createCompanyUser', {
                     method: 'POST',
@@ -90,7 +77,6 @@ export default function Hire() {
                 });
 
                 if (response.ok) {
-                    // localStorage.setItem('RecruiterSignIn', true);
                     navigate('/hire/login');
                 } else {
                     console.error("Failed to create company user");
@@ -99,7 +85,7 @@ export default function Hire() {
                 console.error("Error creating company user:", error);
             }
         } else {
-            errorMsg.innerText='Wrong OTP!';
+            setErrorMsg('Wrong OTP!');
         }
     }
 
@@ -164,10 +150,12 @@ export default function Hire() {
                     >Submit</button>
                 </div>
                 <Link to="/hire/login" style={{ textAlign: 'center', textDecoration: 'none' }}>Already Registered? Click Here to Login</Link>
-                <p 
-                    id="errorMessage"
-                    className="text-danger visually-hidden"
-                >Error: e-mail not found.</p>
+                {errorMsg && (
+                    <p 
+                        id="errorMessage"
+                        className="text-danger"
+                    >{errorMsg}</p>
+                )}
             </form>
         </div>
     );

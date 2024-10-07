@@ -42,7 +42,7 @@ export default function Header({ signIn, setSignIn, userName, recSignIn, setRecS
         setSignIn(false);
         setRecSignIn(false);
         closeMenu();
-        navigate('/hire/login');
+        navigate('/');
     };
 
     return (

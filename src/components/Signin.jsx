@@ -119,8 +119,6 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
 
     const verifyOTP = (event)=>{
         event.preventDefault();
-        console.log(otp);
-        console.log(otpGen);
         if (otp === otpGen){
             localStorage.setItem('SignIn',true);
             setSignIn(true);

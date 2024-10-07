@@ -43,7 +43,7 @@ export default function Home({ recSignIn }) {
         </div>
       </div>
       <div className="howItWorks">
-        <h2>How It Works</h2>
+        <h2>How It Works?</h2>
         <p>JoBoard simplifies the job search process for both job seekers and employers. Here's how:</p>
         <ul>
           <li>Sign up and create your profile.</li>

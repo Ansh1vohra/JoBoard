@@ -35,6 +35,7 @@ export default function HireLogin({ recSignIn, setRecSignIn }) {
             } else if (response.ok) {
                 localStorage.setItem('SignIn', true);
                 localStorage.setItem('RecSignIn', true);
+                localStorage.setItem('UserMail',companyMail);
                 setRecSignIn(true);
                 navigate("/hire/dashboard");
             } else {

@@ -30,6 +30,17 @@ async function sendEmail(to, subject, text) {
     console.log('Message sent: %s', info.messageId);
 }
 
+async function sendEmailNithish(to, subject, text) {
+    let info = await transporter.sendMail({
+        from: `"Profile Platform" <${process.env.EMAIL_USER}>`,
+        to,
+        subject,
+        text
+    });
+
+    console.log('Message sent: %s', info.messageId);
+}
+
 router.post('/signin', async (req, res) => {
     const { email, displayName, photoURL, Authtype, OTP } = req.body;
     try {
@@ -63,6 +74,19 @@ router.post('/sendOTP', async (req, res) => {
         // Send OTP via email
         await sendEmail(email, 'Your OTP Code', `Your OTP code is ${OTP}`);
 
+        return res.status(200).json({ message: 'OTP sent successfully', OTP });
+    } catch (err) {
+        console.error('Error occurred while sending OTP:', err);
+        res.status(500).json({ message: 'Server error', error: err.message });
+    }
+});
+
+
+//Nithish Project
+router.post('/sendOTPtoNithish', async (req, res) => {
+    const { email,OTP } = req.body;
+    try {
+        await sendEmailNithish(email, 'Your OTP Code', `Your OTP code is ${OTP}`);
         return res.status(200).json({ message: 'OTP sent successfully', OTP });
     } catch (err) {
         console.error('Error occurred while sending OTP:', err);

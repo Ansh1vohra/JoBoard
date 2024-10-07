@@ -1,23 +1,22 @@
 .dashboard {
+    min-height: 75vh;
     width: 80%;
     padding:3rem;
     display: flex;
     flex-direction: column;
     text-align: center;
-    justify-content: center;
     margin:0 auto;
 }
 
 .jobform{
-    /* max-width: 780px; */
-    /* min-width: 315px; */
     display: flex;
     flex-direction: column;
     padding:1.5rem;
     gap:1rem;
     text-align: left;
     border-radius: 15px;
-    background-color: rgba(129, 194, 255, 0.43);
+    background-color: rgba(255, 255, 255, 0.477);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .postedMsg{
     font-size: 1rem;
@@ -36,15 +35,17 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
+    gap:0.5rem;
     padding: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+/*
 .jobCard:hover {
-    transform: translateY(-4px); /* Move the card up */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow for a raised effect */
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+*/
 
 .lastDate{
     display: flex;

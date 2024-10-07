@@ -2,13 +2,14 @@ const express = require('express');
 const { getDB } = require('../config/db');
 const router = express.Router();
 const multer = require('multer');
+const { ObjectId } = require('mongodb');
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage, limits: { fileSize: 2 * 1024 * 1024 } });
 
 router.post('/applyJob', upload.single('resume'), async (req, res) => {
     const { userMail, jobID, coverLetter } = req.body;
-    const resume = req.file; // This is the uploaded file
+    const resume = req.file;
     const db = getDB();
 
     try {
@@ -59,4 +60,50 @@ router.post('/userApplications', async (req, res) => {
     }
 });
 
+
+router.post('/getApplicationsByJobID', async (req, res) => {
+    const db = getDB();
+    const { jobID } = req.body;
+    try {
+        const applications = await db.collection('Applications').find({ jobID: jobID }).toArray();
+        res.status(200).json({ applications });
+    } catch (error) {
+        console.error('Error retrieving applications:', error);
+        res.status(404).json({ message: 'Error!' });
+    }
+});
+
+router.get('/getResume/:id', async (req, res) => {
+    const db = getDB();
+    const { id } = req.params;
+
+    try {
+        const application = await db.collection('Applications').findOne({ _id: new ObjectId(id) });
+
+        // console.log('Retrieved application:', JSON.stringify(application, null, 2));
+
+        if (!application) {
+            console.log('Application not found');
+            return res.status(404).json({ message: 'Application not found' });
+        }
+
+        if (!application.resume) {
+            console.log('Resume not found in the application');
+            return res.status(404).json({ message: 'Resume not found' });
+        }
+
+        if (!application.resume.buffer) {
+            console.log('Resume buffer not found in the application');
+            return res.status(404).json({ message: 'Resume buffer not found' });
+        }
+
+        const resumeBuffer = Buffer.from(application.resume.buffer, 'base64');
+
+        res.set('Content-Type', 'application/pdf');
+        res.send(resumeBuffer);
+    } catch (error) {
+        console.error('Error retrieving resume:', error);
+        res.status(500).json({ message: 'Error retrieving resume', error: error.message });
+    }
+});
 module.exports = router;

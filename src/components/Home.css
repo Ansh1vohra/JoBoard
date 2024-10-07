@@ -91,6 +91,12 @@ section {
     color: #333;
 }
 
+.howItWorks h2{
+    text-align: left;
+    font-weight:600 ;
+    color:#16425B;
+}
+
 .howItWorks ul {
     list-style-type: disc;
     padding-left: 20px;
