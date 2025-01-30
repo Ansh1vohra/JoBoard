@@ -12,11 +12,12 @@ import ApplicationHistory from './components/ApplicationHistory';
 import Hire from "./components/Hire";
 import HireLogin from "./components/HireLogin";
 import HireDashboard from "./components/HireDashboard";
-import JobPostDetails from './components/JobPostDetails';
+// import JobPostDetails from './components/JobPostDetails';
 import About from "./components/About";
 import Terms from "./components/Terms";
 import Footer from './components/Footer';
 import NotFound from './components/NotFound';
+import ApplicationDetails from './components/ApplicationDetails';
 
 function App() {
   const status = localStorage.getItem("SignIn") === "true";
@@ -62,7 +63,7 @@ function App() {
         <Route path="/hire" element={<Hire />} />
         <Route path="/hire/login" element={<HireLogin recSignIn={recSignIn} setRecSignIn={setRecSignIn} />} />
         <Route path="/hire/dashboard" element={<HireDashboard />} />
-        <Route path="/applications/:jobId" element={<JobPostDetails />} />
+        <Route path="/applications/:jobId" element={<ApplicationDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />

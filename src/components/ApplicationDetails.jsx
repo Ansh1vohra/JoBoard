@@ -6,7 +6,6 @@ export default function ApplicationDetails() {
     const { jobId } = useParams();
     const [applications, setApplications] = useState([]);
     const [applicationsError, setApplicationsError] = useState('');
-    // const [sortedApplications, setSortedApplications] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Loading state
 
     useEffect(() => {
@@ -32,62 +31,40 @@ export default function ApplicationDetails() {
                 setApplicationsError(error.message);
                 setApplications([]);
             } finally {
-                // setIsLoading(false); // Stop loading
+                setIsLoading(false); // Stop loading
             }
         };
 
         fetchApplications();
     }, [jobId]);
 
-    /*
-
-    const getSimilarityScores = async (keywords) => {
-        try {
-            const requestData = {
-                job_title: 'fxdgcbh',
-                job_description: keywords, // Pass the job title or keywords as required
-                resumes: applications.map(app => ({
-                    filename: `${app._id}.pdf`,
-                    content: app.resume, // Assuming resume is stored as base64 in 'resume'
-                })),
-            };
-
-            const response = await fetch('http://127.0.0.1:5000/api/rank_resumes', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestData),
-            });
-
-            const similarityData = await response.json();
-            
-            if (response.ok) {
-                const sortedApps = applications.map((app, index) => ({
-                    ...app,
-                    similarity_score: similarityData.ranked_resumes[index].score,
-                })).sort((a, b) => b.similarity_score - a.similarity_score);
-
-                setSortedApplications(sortedApps);
-                setIsLoading(false);
-            } else {
-                throw new Error('Failed to fetch similarity scores');
-            }
-        } catch (error) {
-            console.error("Error fetching similarity scores:", error);
-        }
-     };*/
-
-    useEffect(() => {
-        // const keywords = "javascript, html, css, react, next.js"; 
-        if (applications.length > 0) {
-            // getSimilarityScores(keywords);
-        }
-    }, [applications]);
-
     const viewResume = (applicationId) => {
-        // Implement the functionality to view the resume
-        alert(`View resume for application ID: ${applicationId}`);
+        // alert(`View resume for application ID: ${applicationId}`);
+        const application = applications.find(app => app._id === applicationId);
+    
+        if (application && application.resume) {
+            // Decode the base64 string
+            const byteCharacters = atob(application.resume);
+            const byteNumbers = new Uint8Array(byteCharacters.length);
+            
+            for (let i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+    
+            // Create a Blob from the byte array
+            const blob = new Blob([byteNumbers], { type: 'application/pdf' });
+    
+            // Create a URL for the Blob
+            const blobUrl = URL.createObjectURL(blob);
+    
+            // Open the PDF in a new tab
+            window.open(blobUrl, '_blank');
+    
+            // Optionally, revoke the object URL after some time to free up memory
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 100); // Revoke after 100ms
+        } else {
+            alert('No resume available for this application.');
+        }
     };
 
     return (
@@ -102,7 +79,7 @@ export default function ApplicationDetails() {
                         <div className='applicationCard' key={application._id} id={application._id}>
                             <p><b>User Email:</b> {application.userMail}</p>
                             <p><b>Cover Letter:</b> {application.coverLetter}</p>
-                            {/* <p><b>Similarity Score:</b> {application.similarity_score.toFixed(2)}%</p> */}
+                            {/* Removed Similarity Score Display */}
                             <button 
                                 className='btn btn-outline-dark' 
                                 onClick={() => viewResume(application._id)}>View Resume</button>

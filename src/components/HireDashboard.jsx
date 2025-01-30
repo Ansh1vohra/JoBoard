@@ -13,7 +13,7 @@ function Dashboard() {
         const fetchCompanyDetails = async () => {
             setLoading(true);
             try {
-                const response = await fetch('http://localhost:5000/api/company/details', {
+                const response = await fetch('https://jo-board-server.vercel.app/api/company/details', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

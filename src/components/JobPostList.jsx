@@ -16,7 +16,7 @@ export default function JobPostList({ companyDetails }) {
         const fetchJobsByCompanyId = async (companyId) => {
             setLoading(true);
             try {
-                const response = await fetch('http://localhost:5000/api/jobs/getJobByCID', {
+                const response = await fetch('https://jo-board-server.vercel.app/api/jobs/getJobByCID', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
