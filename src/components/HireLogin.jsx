@@ -17,7 +17,7 @@ export default function HireLogin({ recSignIn, setRecSignIn }) {
     async function redirectDash(e) {
         e.preventDefault();
         try {
-            const response = await fetch('https://jo-board-server.vercel.app/api/company/verifyUser', {
+            const response = await fetch('https://jo-board.vercel.app/api/company/verifyUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

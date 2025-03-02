@@ -21,7 +21,7 @@ export default function Hire() {
             const otpGen = generateOTP();
             setGeneratedOTP(otpGen);
             try {
-                const response = await fetch('https://jo-board-server.vercel.app/api/company/sendOTP', {
+                const response = await fetch('https://jo-board.vercel.app/api/company/sendOTP', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ export default function Hire() {
             setErrorMsg('Enter OTP');
         } else if (OTP === generatedOTP) {
             try {
-                const response = await fetch('https://jo-board-server.vercel.app/api/company/createCompanyUser', {
+                const response = await fetch('https://jo-board.vercel.app/api/company/createCompanyUser', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

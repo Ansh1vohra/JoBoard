@@ -31,7 +31,7 @@ export default function PostJob({ companyDetails }) {
         };
 
         try {
-            const response = await fetch('https://jo-board-server.vercel.app/api/jobs/postJob', {
+            const response = await fetch('https://jo-board.vercel.app/api/jobs/postJob', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

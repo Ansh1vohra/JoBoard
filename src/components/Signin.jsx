@@ -105,7 +105,7 @@ export default function Signin({signIn,setSignIn,UserName,setUserName}){
                 OTP:otpGenerated
             })
         });
-        await fetch('https://jo-board-server.vercel.app/api/users/sendOTP',{
+        await fetch('https://jo-board.vercel.app/api/users/sendOTP',{
             method:'POST',
             headers: {
                 'Content-Type':'application/json'

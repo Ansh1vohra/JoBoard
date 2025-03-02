@@ -12,7 +12,7 @@ export default function ApplicationDetails() {
         const fetchApplications = async () => {
             setIsLoading(true); // Start loading
             try {
-                const response = await fetch('https://jo-board-server.vercel.app/api/application/getApplicationsByJobID', {
+                const response = await fetch('https://jo-board.vercel.app/api/application/getApplicationsByJobID', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
