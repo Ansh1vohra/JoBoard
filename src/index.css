@@ -1,15 +1,17 @@
+/* importing google font */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
-    font-style: normal;
-    font-optical-sizing: auto;
+  font-style: normal;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./components/Images/background.png'); /* Add the background image */
-  background-size: cover; /* Ensure the image covers the entire card */
-  background-position: center; /* Center the image */
+  background-image: url('./components/Images/background.png');
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 

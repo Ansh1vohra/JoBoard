@@ -35,11 +35,11 @@ export default function Home({ recSignIn }) {
         <h4>What Our Users Say</h4>
         <div className="testimonial">
           <p>"JoBoard helped me find my dream job in just two weeks! The platform is easy to use and the support team is fantastic."</p>
-          <span>- Jane Doe</span>
+          <span>- Ansh Vohra</span>
         </div>
         <div className="testimonial">
           <p>"As a recruiter, JoBoard has been invaluable in finding top talent quickly and efficiently."</p>
-          <span>- John Smith</span>
+          <span>- Ansh Vohra</span>
         </div>
       </div>
       <div className="howItWorks">
