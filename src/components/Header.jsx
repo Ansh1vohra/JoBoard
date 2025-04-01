@@ -52,11 +52,13 @@ export default function Header({ signIn, setSignIn, userName, recSignIn, setRecS
                     <img src={Logo} alt="Logo" width="37px" />
                     <div className="logo">JoBoard</div>
                 </Link>
+                {recSignIn?null:(
                 <div className="navList">
                     <Link className="nav-link" to="/jobs">Jobs</Link>
                     <Link className="nav-link" to="/internships">Internships</Link>
                     <Link className="nav-link" to="/about">About</Link>
                 </div>
+                )}
             </div>
             <button
                 className="bg-transparent visually-hidden userMenu"

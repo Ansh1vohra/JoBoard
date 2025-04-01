@@ -11,6 +11,9 @@ export default function ApplicationForm() {
     const [coverLetter, setCoverLetter] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [userMail, setUserMail] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isApplicationExpired, setIsApplicationExpired] = useState(false);
+    const [alreadyApplied,setAlreadyApplied] = useState(false);
 
     useEffect(() => {
         const isSignedIn = localStorage.getItem('SignIn') === 'true';
@@ -26,6 +29,11 @@ export default function ApplicationForm() {
                 data.description = data.description.replace(/\\n/g, '\n');
                 setJob(data);
                 setLoading(false);
+
+                // Check if the last date to apply has passed
+                const lastDate = new Date(data.lastDate);
+                const currentDate = new Date();
+                setIsApplicationExpired(currentDate > lastDate);
             })
             .catch(error => {
                 console.error('Error fetching job details:', error);
@@ -56,7 +64,10 @@ export default function ApplicationForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
+        if (isApplicationExpired) return;
+
+        setIsSubmitting(true);
+
         const formData = new FormData();
         formData.append('userMail', userMail);
         formData.append('jobID', id);
@@ -69,16 +80,21 @@ export default function ApplicationForm() {
         })
         .then(response => response.json())
         .then(data => {
+            console.log(data);
+            setIsSubmitting(false);
             if (data.message === 'Application Posted Successfully!') {
-                alert('Application Submitted');
                 navigate('/application-history');
             } else {
-                alert(data.message);
+                console.log(data.message);
+                if (data.message==="User Has Already Applied For this Job"){
+                    setAlreadyApplied(true);
+                }
+                setIsSubmitting(false);
             }
         })
         .catch(error => {
+            setIsSubmitting(false);
             console.error('Error submitting application:', error);
-            alert("Error submitting application. Please try again later.");
         });
     };
 
@@ -88,6 +104,12 @@ export default function ApplicationForm() {
                 <h2>Submit Your Application</h2>
                 <p><strong>Job Title:</strong> {job.jobTitle}</p>
                 <p><strong>Company Name:</strong> {job.companyName || 'Company Name!'}</p>
+
+                {/* Display message if the application period has expired */}
+                {isApplicationExpired && (
+                    <p className="text-danger">The application period for this job has expired.</p>
+                )}
+
                 <form onSubmit={handleSubmit}>
                     <div>
                         <label>Resume:</label>
@@ -98,6 +120,7 @@ export default function ApplicationForm() {
                             id="resume"
                             onChange={fileUpload}
                             required
+                            disabled={isApplicationExpired || isSubmitting}
                         />
                     </div>
                     <div>
@@ -110,34 +133,45 @@ export default function ApplicationForm() {
                             value={coverLetter}
                             onChange={(e) => setCoverLetter(e.target.value)}
                             required
+                            disabled={isApplicationExpired || isSubmitting}
                         ></textarea>
                     </div>
                     <p>Last Date to Apply: {new Date(job.lastDate).toLocaleDateString()}</p>
-                    <button type="submit">Submit Application</button>
+
+                    {/* Display loading state for submission */}
+                    {isSubmitting ? (
+                        <button type="button" disabled>
+                            Submitting...
+                        </button>
+                    ) : (
+                        <button type="submit" disabled={isApplicationExpired}>Submit Application</button>
+                    )}
+                    {alreadyApplied?(
+                        <p>You Have Already Applied For this Job</p>
+                    ):null}
                 </form>
             </div>
+
             {showModal && (
                 <div className="modal" id="FileSizeLimit">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title text-danger" id='modalTitle'>
-                            File Size Too Large</h5>
-                        <button
-                            type="button"
-                            className="btn-close"
-                            onClick={() => {
-                                setShowModal(false);
-                            }}
-                        >
-                        </button>
-
+                    <div className="modal-dialog modal-dialog-centered">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title text-danger" id='modalTitle'>
+                                    File Size Too Large
+                                </h5>
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    onClick={() => setShowModal(false)}
+                                >
+                                </button>
+                            </div>
+                            <div className="modal-body" id="modalBody">
+                                <p>The File Limit is only 2MB.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className="modal-body" id="modalBody">
-                        <p>The File Limit is only 2MB.</p>
-                    </div>
-                    </div>
-                </div>
                 </div>
             )}
         </div>
